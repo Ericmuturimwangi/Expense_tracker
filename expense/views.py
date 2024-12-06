@@ -3,6 +3,8 @@ from .models import Expense
 from .forms import ExpenseForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 
 
 # @login_required
@@ -25,4 +27,16 @@ def add_expense(request):
     else:
         form = ExpenseForm()
     return render (request, 'add_expense.html', {'form':form})
+
+# registration view
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('expense_list')
+    else:
+        form = UserCreationForm()
+    return render(request, 'register.html', {'form':form})
 
