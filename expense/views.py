@@ -2,11 +2,17 @@ from django.shortcuts import render
 from .models import Expense
 from .forms import ExpenseForm
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
 
+# @login_required
 def expense_list(request):
-    expenses = Expense.objects.filter(user = request.user)
-    return render(request, 'expense/expense_list.html', {'expense': expenses})
+    if request.user.is_authenticated:
+        expenses = Expense.objects.filter(user = request.user)
+    else:
+        expenses = []
+    
+    return render(request, 'expense_list.html', {'expense': expenses})
 
 def add_expense(request):
     if request.method == "POST":
@@ -18,5 +24,5 @@ def add_expense(request):
             return redirect('expense_list')
     else:
         form = ExpenseForm()
-    return render (request, 'expense/add_expense.html', {'form':form})
+    return render (request, 'add_expense.html', {'form':form})
 
