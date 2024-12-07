@@ -62,7 +62,7 @@ WSGI_APPLICATION = "expense_tracker.wsgi.application"
 
 
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/expenses/'
 LOGOUT_REDIRECT_URL = '/login/'
 
 # Database

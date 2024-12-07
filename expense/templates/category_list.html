@@ -1,0 +1,9 @@
+<h1>Expense Categories </h1>
+
+<ul>
+    {% for category, total in totals.items %}
+    <li> {{ category.name }}: {{ total }} </li>
+     {% endfor %} 
+</ul>
+
+<a href="{% url 'add_category' %}">Add Category </a>
