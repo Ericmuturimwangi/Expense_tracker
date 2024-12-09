@@ -1,9 +1,35 @@
-<h1>Expense Categories </h1>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Categories</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-4">
+        <!-- Heading -->
+        <h1 class="text-3xl font-bold mb-6 text-center">Expense Categories</h1>
 
-<ul>
-    {% for category, total in totals.items %}
-    <li> {{ category.name }}: {{ total }} </li>
-     {% endfor %} 
-</ul>
+        <!-- Category List -->
+        <ul class="space-y-4">
+            {% for category, total in totals.items %}
+            <li class="flex justify-between items-center bg-gray-100 p-4 rounded-lg shadow-md">
+                <span class="text-lg font-medium">{{ category.name }}:</span>
+                <span class="text-gray-600">{{ total }}</span>
+            </li>
+            {% empty %}
+            <li class="text-center text-gray-500">No categories found.</li>
+            {% endfor %}
+        </ul>
 
-<a href="{% url 'add_category' %}">Add Category </a>
+        <!-- Add Category Button -->
+        <div class="mt-6 text-center">
+            <a href="{% url 'add_category' %}" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition">
+                Add Category
+            </a>
+        </div>
+    </div>
+</body>
+</html>
