@@ -1,7 +1,27 @@
-<h1>ADD EXPENSE</h1>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Expense</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-6">
+        <!-- Heading -->
+        <h1 class="text-3xl font-bold mb-6 text-center">Add Expense</h1>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-</form>
+        <!-- Expense Form -->
+        <form method="post" class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
+            {% csrf_token %}
+            <div class="mb-4">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition">
+                Save
+            </button>
+        </form>
+    </div>
+</body>
+</html>
